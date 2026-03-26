@@ -2,10 +2,7 @@
    app.js — Lógica principal de la SPA (QA/Testing Edition)
    ================================================================ */
 
-// En local usa localhost; en web usa la URL de ngrok (actualizá NGROK_URL cuando cambie)
-const NGROK_URL    = 'https://3dfe-2800-4b0-4013-8212-ec88-d121-742b-1246.ngrok-free.app';
-const isLocal      = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const LOCAL_SERVER = isLocal ? 'http://localhost:3010' : NGROK_URL;
+const LOCAL_SERVER = 'https://27e7-2800-4b0-4013-8212-ec88-d121-742b-1246.ngrok-free.app'; // URL ngrok actual — actualizá si cambia
 
 const state = {
   currentView: 'home',
