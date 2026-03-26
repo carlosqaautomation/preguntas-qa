@@ -1,5 +1,10 @@
 // ── Definición de temas ────────────────────────────────────────
 const topics = {
+  presentation: {
+    name: "Presentación",
+    icon: "🎤",
+    color: "#8b5cf6"
+  },
   functional: {
     name: "Testing Funcional",
     icon: "🧪",
@@ -27,217 +32,343 @@ const topics = {
   }
 };
 
-// ── Banco de preguntas con multi-tema ──────────────────────────
+// ── Banco de preguntas — entrevistas reales ───────────────────
 // Cada pregunta puede pertenecer a más de un tema via el array "topics"
 const questions = [
   {
     id: 1,
-    q: "¿Cuál es la diferencia entre verificación y validación en QA?",
-    a: "Verificación responde '¿Estamos construyendo el producto correctamente?' — asegura que el software cumple las especificaciones (revisiones, inspecciones, walkthroughs). Validación responde '¿Estamos construyendo el producto correcto?' — asegura que el software satisface las necesidades reales del usuario (testing funcional, UAT). Ambas son parte fundamental del proceso de aseguramiento de calidad.",
-    topics: ["functional"]
+    q: "¿Cómo te presentarías en una entrevista QA?",
+    a: "Hola, mi nombre es Walter. Soy QA con experiencia en pruebas funcionales, automatización y pruebas de performance. He trabajado validando aplicaciones web y APIs, enfocándome en automatización para reducir el tiempo de regresión y mejorar la calidad antes de los despliegues. He trabajado automatizando pruebas web con Selenium y Playwright, y para pruebas de APIs he usado Karate DSL. Normalmente aplico buenas prácticas como Page Object Model para que el framework sea más mantenible. También he trabajado con pruebas de performance usando Apache JMeter, simulando usuarios concurrentes para validar cómo responde la aplicación bajo carga. Adicionalmente he integrado pruebas automatizadas dentro de pipelines de Azure DevOps, lo que permite ejecutar pruebas automáticamente en cada cambio y detectar errores antes de llegar a producción. En general me gusta enfocarme en automatizar flujos críticos del negocio y construir pruebas que realmente aporten valor al equipo.",
+    topics: ["presentation"]
   },
   {
     id: 2,
-    q: "¿Qué es un caso de prueba y qué debe contener?",
-    a: "Un caso de prueba es un conjunto de condiciones e instrucciones para verificar una funcionalidad específica. Debe contener: ID único, título descriptivo, precondiciones, pasos detallados paso a paso, datos de prueba, resultado esperado, resultado actual (se completa al ejecutar) y estado (pass/fail). También puede incluir prioridad, severidad y referencias al requerimiento.",
-    topics: ["functional"]
+    q: "¿Qué pruebas de performance has ejecutado?",
+    a: "He trabajado principalmente con pruebas de carga, estrés y picos. Las de carga sirven para validar cómo se comporta la aplicación con la cantidad esperada de usuarios. Las de estrés se usan para encontrar el punto donde el sistema empieza a fallar. También he hecho pruebas de pico para ver cómo responde cuando hay incrementos repentinos de usuarios.",
+    topics: ["performance"]
   },
   {
     id: 3,
-    q: "¿Cuál es la diferencia entre smoke testing y sanity testing?",
-    a: "Smoke testing (prueba de humo) verifica las funcionalidades más críticas del sistema para decidir si vale la pena continuar con pruebas más profundas. Se ejecuta en un nuevo build. Sanity testing es más foco y se hace después de un cambio pequeño para verificar que esa área específica funciona correctamente. Ambos son subconjuntos del regression testing pero con diferente alcance.",
-    topics: ["functional"]
+    q: "¿Utilizaste algún plugin para JMeter?",
+    a: "Sí, utilicé plugins a través de JMeter Plugins Manager para agregar visualizadores de métricas y manejar mejor los thread groups.",
+    topics: ["performance"]
   },
   {
     id: 4,
-    q: "¿Qué es el testing exploratorio?",
-    a: "Es un enfoque donde el tester diseña y ejecuta pruebas simultáneamente, aprendiendo sobre el sistema mientras lo prueba, sin scripts predefinidos. Se basa en la heurística, experiencia e intuición del tester. Es muy efectivo para descubrir bugs no previstos en los casos de prueba formales. Técnicas como session-based testing ayudan a estructurarlo con charters de tiempo fijo.",
-    topics: ["functional"]
+    q: "¿Cuántos usuarios concurrentes usaste en las pruebas?",
+    a: "Depende del proyecto. En aplicaciones pequeñas trabajé con escenarios entre 100 y 300 usuarios concurrentes. En algunas pruebas más grandes llegamos a simular cerca de 1000 usuarios.",
+    topics: ["performance"]
   },
   {
     id: 5,
-    q: "¿Qué es boundary value analysis y equivalence partitioning?",
-    a: "Equivalence Partitioning divide el dominio de entrada en particiones donde se asume que todos los valores se comportan igual — solo se prueba un valor representativo por partición. Boundary Value Analysis (BVA) complementa esto probando los valores en los límites de cada partición (bordes), donde los defectos son más frecuentes. Por ejemplo, para una edad de 18-65: probar 17, 18, 19, 64, 65, 66.",
-    topics: ["functional"]
+    q: "¿Cómo estructuras tu proyecto de performance?",
+    a: "Normalmente separo los scripts por flujo de negocio, por ejemplo login, búsqueda o compra. También manejo datos de prueba en archivos CSV y parametrizo los ambientes para ejecutar los scripts en distintos entornos.",
+    topics: ["performance"]
   },
   {
     id: 6,
-    q: "¿Cuál es la diferencia entre un bug, defecto y falla?",
-    a: "Error: equivocación humana (programador escribe código incorrecto). Defecto/Bug: resultado del error en el código fuente — es el problema en el código. Falla/Failure: manifestación del defecto en tiempo de ejecución — lo que el usuario experimenta. Un defecto puede existir en el código sin causar falla si ese camino nunca se ejecuta. La severidad y prioridad del bug son conceptos independientes.",
-    topics: ["functional"]
+    q: "¿Qué sabes de BlazeMeter?",
+    a: "Es una plataforma en la nube que permite ejecutar pruebas de JMeter a gran escala generando carga desde diferentes ubicaciones.",
+    topics: ["performance"]
   },
   {
     id: 7,
-    q: "¿Qué es regression testing y cuándo se ejecuta?",
-    a: "El regression testing verifica que los cambios recientes (bugfixes, nuevas features) no hayan roto funcionalidad que antes trabajaba correctamente. Se ejecuta: después de cada cambio de código, antes de un release, después de resolver un bug crítico. Idealmente se automatiza ya que se repite frecuentemente. La suite de regresión crece con el tiempo y debe mantenerse.",
-    topics: ["functional", "automation", "cicd"]
+    q: "¿Cómo estresas una aplicación?",
+    a: "Empiezo con la carga esperada y luego aumento progresivamente los usuarios mientras monitoreo tiempos de respuesta y errores hasta encontrar el punto donde el sistema se degrada.",
+    topics: ["performance"]
   },
   {
     id: 8,
-    q: "¿Qué es un sprint en Scrum?",
-    a: "Un sprint es una iteración de tiempo fijo (generalmente 1-4 semanas) en Scrum donde el equipo construye un incremento de producto potencialmente entregable. Tiene una duración fija que no cambia. Incluye: Sprint Planning, Daily Scrum, Sprint Review y Sprint Retrospective. Durante el sprint el backlog no se modifica, aunque urgencias pueden tratarse con el Product Owner.",
-    topics: ["agile"]
+    q: "¿Cómo haces pruebas de pico (spike testing)?",
+    a: "Simulo incrementos repentinos de usuarios. Por ejemplo, si normalmente hay 100 usuarios puedo subir rápidamente a 400 o 500 para observar la reacción del sistema.",
+    topics: ["performance"]
   },
   {
     id: 9,
-    q: "¿Cuál es el rol del QA en un equipo Agile/Scrum?",
-    a: "En Agile, QA no es una fase final sino parte integral durante todo el sprint: participa en refinamiento para cuestionar requerimientos ambiguos, en Sprint Planning para estimar esfuerzo de testing, escribe criterios de aceptación con el PO, realiza testing continuo del código que va entregando desarrollo, y en Retrospectivas propone mejoras al proceso de calidad. El QA colabora, no es un guardián bloqueador.",
-    topics: ["agile", "functional"]
+    q: "¿Dónde ejecutas las pruebas de performance?",
+    a: "Normalmente en ambientes de staging o preproducción porque son los más parecidos a producción.",
+    topics: ["performance"]
   },
   {
     id: 10,
-    q: "¿Qué es Definition of Done (DoD) y Definition of Ready (DoR)?",
-    a: "Definition of Done es el acuerdo del equipo de qué criterios debe cumplir una historia de usuario para considerarse completada (ej: código revisado, unit tests pasando, testing funcional hecho, sin bugs críticos, documentado). Definition of Ready define cuándo una historia está lista para entrar al sprint (criterios de aceptación claros, estimada, sin dependencias bloqueantes). Ambas reducen ambigüedad y mejoran calidad.",
-    topics: ["agile"]
+    q: "¿Cómo creas tu estrategia de performance testing?",
+    a: "Primero identifico los flujos críticos del negocio, luego defino los escenarios de carga basados en la cantidad esperada de usuarios y finalmente ejecuto las pruebas y analizo los resultados.",
+    topics: ["performance"]
   },
   {
     id: 11,
-    q: "¿Qué son los criterios de aceptación y cómo se escriben?",
-    a: "Los criterios de aceptación definen las condiciones que debe cumplir una historia de usuario para ser aceptada por el Product Owner. Se escriben en formato Given-When-Then (Gherkin): Given (contexto/precondición), When (acción del usuario), Then (resultado esperado). Son la base para el testing y deben ser: específicos, medibles, sin ambigüedad técnica y validables. QA colabora en su definición para detectar gaps.",
-    topics: ["agile", "functional", "automation"]
+    q: "¿Con qué herramientas has automatizado pruebas?",
+    a: "Principalmente con Selenium, Playwright y Karate DSL.",
+    topics: ["automation"]
   },
   {
     id: 12,
-    q: "¿Cuál es la diferencia entre Scrum y Kanban?",
-    a: "Scrum usa sprints de duración fija, roles definidos (PO, Scrum Master, Dev Team), ceremonias formales y entrega al final del sprint. Kanban es un sistema de flujo continuo sin iteraciones fijas, usa un tablero con límites WIP (Work in Progress) para controlar el flujo y se mejora continuamente. Kanbanflow es más flexible. Para QA: en Scrum las pruebas se planifican por sprint; en Kanban se prueba a medida que las tarjetas fluyen.",
-    topics: ["agile"]
+    q: "Háblame de tu experiencia con Selenium.",
+    a: "He trabajado con Selenium automatizando pruebas end-to-end en aplicaciones web usando Java y aplicando Page Object Model.",
+    topics: ["automation"]
   },
   {
     id: 13,
-    q: "¿Qué es una retrospectiva y qué formatos existen?",
-    a: "La retrospectiva es la ceremonia Scrum donde el equipo reflexiona sobre su proceso de trabajo para mejorar continuamente (no sobre el producto). Formatos populares: Start/Stop/Continue (qué empezar, dejar y continuar haciendo), Mad/Sad/Glad (emociones), 4Ls (Liked/Learned/Lacked/Longed for), Sailboat (viento=lo que impulsa, ancla=lo que frena). El Scrum Master facilita para crear un ambiente seguro.",
-    topics: ["agile"]
+    q: "¿Por qué usas Playwright?",
+    a: "Porque es más moderno, tiene esperas automáticas y maneja muy bien aplicaciones web modernas.",
+    topics: ["automation"]
   },
   {
     id: 14,
-    q: "¿Qué es Selenium y para qué se usa?",
-    a: "Selenium es un framework open-source para automatizar navegadores web. Sus componentes: Selenium WebDriver (API para controlar browsers), Selenium Grid (ejecución en paralelo en múltiples máquinas/browsers), Selenium IDE (herramienta de record & playback). Se usa para automatizar pruebas funcionales/regresión de aplicaciones web. Soporta múltiples lenguajes (Java, Python, JavaScript, C#) y browsers (Chrome, Firefox, Edge, Safari).",
-    topics: ["automation"]
+    q: "¿Qué herramienta usas para testing de APIs?",
+    a: "He trabajado bastante con Karate DSL porque permite validar respuestas JSON fácilmente.",
+    topics: ["automation", "functional"]
   },
   {
     id: 15,
-    q: "¿Cuál es la diferencia entre Selenium y Playwright/Cypress?",
-    a: "Selenium: maduro, soporta más browsers/lenguajes, requiere WebDriver externo, puede ser más lento y flaky. Cypress: solo JavaScript, corre en el mismo proceso que el browser (más confiable), excelente DX, solo Chrome-based + Firefox. Playwright: Microsoft, soporta Chromium/Firefox/WebKit, multi-lenguaje, auto-waits, captura de trazas. Playwright y Cypress tienen mejor manejo de asincronía y son más modernos. Selenium sigue siendo el más usado en empresas legacy.",
-    topics: ["automation"]
+    q: "¿Qué tipos de pruebas automatizas?",
+    a: "Principalmente regresión, smoke tests y flujos críticos del negocio.",
+    topics: ["automation", "functional"]
   },
   {
     id: 16,
-    q: "¿Qué es el Page Object Model (POM)?",
-    a: "Page Object Model es un patrón de diseño para organizar código de automatización donde cada página (o componente) de la aplicación tiene una clase correspondiente que encapsula sus elementos y acciones. Beneficios: reutilización de código, mantenibilidad (si cambia el selector, solo se modifica en un lugar), legibilidad de los tests (los tests llaman métodos descriptivos como loginPage.enterCredentials()). Es el patrón estándar de la industria.",
+    q: "¿Qué patrón de diseño usas en automatización?",
+    a: "Uso Page Object Model porque ayuda a separar la lógica de la interfaz y facilita el mantenimiento.",
     topics: ["automation"]
   },
   {
     id: 17,
-    q: "¿Qué es BDD y herramientas como Cucumber?",
-    a: "BDD (Behavior-Driven Development) es una práctica donde los tests se escriben en lenguaje natural (Gherkin: Given/When/Then) accesible a negocio, QA y desarrollo. Cucumber parsea archivos .feature y conecta los pasos con código de automatización (step definitions). Beneficios: documentación viva, comunicación entre roles, tests como especificación ejecutable. SpecFlow (C#), Behave (Python), JBehave (Java) son alternativas.",
-    topics: ["automation", "agile"]
+    q: "¿Cuál es la mejor forma de obtener un selector?",
+    a: "Trato de usar selectores estables como id o atributos específicos del sistema y evito XPaths muy largos.",
+    topics: ["automation"]
   },
   {
     id: 18,
-    q: "¿Qué es el testing de API y herramientas para hacerlo?",
-    a: "El testing de API verifica contratos, respuestas, códigos de estado HTTP, headers, payloads JSON/XML, autenticación y manejo de errores directamente a nivel de servicio (sin UI). Herramientas: Postman/Newman (manual y colecciones automatizadas), RestAssured (Java), Supertest (Node.js), requests+pytest (Python), Insomnia. Ventajas sobre UI testing: más rápido, más estable, detecta bugs antes de que lleguen a la interfaz.",
-    topics: ["automation", "functional"]
+    q: "¿Conoces herramientas de automatización para móviles?",
+    a: "Conozco Appium para automatizar aplicaciones móviles.",
+    topics: ["automation"]
   },
   {
     id: 19,
-    q: "¿Cómo manejas los datos de prueba en automatización?",
-    a: "Estrategias: Data-driven testing (leer datos de CSV/Excel/JSON para ejecutar el mismo test con múltiples datasets), fixtures predefinidas, factory patterns para generar datos dinámicos, bases de datos de test separadas, mocking/stubbing de servicios externos. Buenas prácticas: tests independientes que no comparten estado, limpiar datos después de cada test, no hardcodear datos sensibles (usar variables de entorno). El manejo de datos es uno de los mayores desafíos de la automatización.",
+    q: "¿Has probado aplicaciones mainframe?",
+    a: "No directamente, pero sé que normalmente se prueban mediante emuladores de terminal o integraciones con servicios backend.",
     topics: ["automation"]
   },
   {
     id: 20,
-    q: "¿Qué es el testing de carga y cuándo aplicarlo?",
-    a: "El testing de carga verifica el comportamiento del sistema bajo una carga esperada de usuarios/transacciones simultáneas. Tipos: Load test (carga normal esperada), Stress test (más allá del límite para encontrar punto de quiebre), Spike test (aumento repentino de carga), Soak/Endurance test (carga sostenida por horas para detectar memory leaks). Se aplica antes de releases importantes, Black Friday, lanzamientos de campañas. Herramientas: JMeter, k6, Gatling, Locust.",
-    topics: ["performance"]
+    q: "¿Con qué lenguajes de programación has trabajado?",
+    a: "Principalmente con Java para automatización, algo de JavaScript y scripting básico.",
+    topics: ["automation"]
   },
   {
     id: 21,
-    q: "¿Qué métricas son importantes en performance testing?",
-    a: "Response Time: tiempo que tarda en responder (p50, p90, p95, p99 percentiles). Throughput: requests por segundo que el sistema procesa. Error Rate: porcentaje de requests fallidos. Concurrent Users: usuarios simultáneos activos. CPU/Memory/Disk utilization del servidor. TTFB (Time To First Byte). Apdex score (Application Performance Index): métrica 0-1 que combina tiempos satisfactorios, tolerables y frustrantes.",
-    topics: ["performance"]
+    q: "¿Cuáles son las diferencias entre Selenium y Playwright?",
+    a: "Selenium es más antiguo y ampliamente usado, mientras que Playwright es más moderno, rápido y maneja mejor la sincronización.",
+    topics: ["automation"]
   },
   {
     id: 22,
-    q: "¿Qué es k6 y cómo se diferencia de JMeter?",
-    a: "k6 es una herramienta moderna de load testing open-source (Grafana Labs) donde los scripts se escriben en JavaScript, es developer-friendly, se integra fácilmente en CI/CD con CLI, y genera métricas limpias. JMeter es más maduro, con GUI visual, soporta más protocolos (JDBC, LDAP, FTP), pero los scripts XML son difíciles de mantener en control de versiones. k6 es preferido para equipos modernos y pipelines CI/CD; JMeter en entornos enterprise legacy.",
-    topics: ["performance", "cicd"]
+    q: "¿Conoces Git? ¿Cómo lo usas?",
+    a: "Sí, lo uso para manejar versiones del código, trabajar con ramas y hacer pull requests.",
+    topics: ["cicd"]
   },
   {
     id: 23,
-    q: "¿Qué es un bottleneck y cómo se identifica?",
-    a: "Un bottleneck (cuello de botella) es el componente que limita el rendimiento global del sistema: puede ser CPU saturado, memoria insuficiente, I/O de disco lento, queries de base de datos sin índices, conexiones de red, o código ineficiente. Se identifica con: profiling de la aplicación, monitoreo de métricas de infraestructura durante la prueba (APM tools como New Relic, Datadog, Dynatrace), análisis de logs y queries lentas. El primer paso es medir, no asumir.",
-    topics: ["performance"]
+    q: "¿Cuál es tu proceso de pruebas?",
+    a: "Analizo requerimientos, diseño casos de prueba, ejecuto pruebas, reporto defectos y finalmente hago regresión.",
+    topics: ["functional"]
   },
   {
     id: 24,
-    q: "¿Qué es CI/CD y cuál es su relación con QA?",
-    a: "CI (Continuous Integration) integra cambios frecuentemente al repositorio principal, ejecutando builds y tests automáticos en cada push para detectar errores rápido. CD puede ser Continuous Delivery (artefacto siempre listo para deploy manual) o Continuous Deployment (deploy automático a producción). QA es clave: define qué tests corren en cada stage del pipeline, los automatiza, analiza resultados y mantiene el pipeline verde. Un buen pipeline incluye: unit tests, integration tests, API tests, smoke tests.",
-    topics: ["cicd"]
+    q: "¿Qué técnicas de diseño de pruebas usas?",
+    a: "Partición de equivalencia, valores límite y pruebas basadas en riesgo.",
+    topics: ["functional"]
   },
   {
     id: 25,
-    q: "¿Qué herramientas de CI/CD conoces?",
-    a: "Jenkins: open-source, muy configurable, gran ecosistema de plugins, requiere mantenimiento de infraestructura. GitHub Actions: integrado en GitHub, YAML, gratis para repos públicos, excelente DX. GitLab CI/CD: integrado en GitLab, potente y bien documentado. Azure DevOps Pipelines: ecosistema Microsoft, integración con Azure. CircleCI, Bitbucket Pipelines, Travis CI. Para QA: lo importante es saber escribir pipelines en YAML y entender cómo integrar suites de tests.",
-    topics: ["cicd"]
+    q: "¿Cómo decides qué automatizar?",
+    a: "Automatizo pruebas repetitivas y críticas del negocio. No automatizo pruebas exploratorias o funcionalidades que cambian constantemente.",
+    topics: ["automation", "functional"]
   },
   {
     id: 26,
-    q: "¿Qué es un pipeline de testing y qué stages debe tener?",
-    a: "Un pipeline de testing define las etapas que corre automáticamente en cada cambio. Stages recomendados: 1) Lint/análisis estático, 2) Unit tests (rápidos, <5 min), 3) Build/compilación, 4) Integration tests, 5) API/contract tests, 6) Deploy a staging, 7) Smoke tests en staging, 8) Regression/E2E tests (paralelos), 9) Performance tests (en horarios específicos), 10) Deploy a producción (manual o automático). Fail fast: los tests más rápidos primero.",
+    q: "¿Has integrado automatización en pipelines de CI/CD?",
+    a: "Sí, he integrado pruebas en pipelines para que se ejecuten automáticamente con cada cambio.",
     topics: ["cicd", "automation"]
   },
   {
     id: 27,
-    q: "¿Qué es shift-left testing?",
-    a: "Shift-left testing es el enfoque de mover las actividades de testing lo más temprano posible en el ciclo de desarrollo (hacia la izquierda en la línea de tiempo del proyecto). Incluye: QA en refinamiento de requerimientos, revisión de criterios de aceptación antes de desarrollar, TDD/BDD, revisión de código con perspectiva de calidad, unit/integration tests escritos por developers. Principio: más barato y rápido encontrar defectos antes.",
-    topics: ["functional", "agile", "cicd"]
+    q: "¿Utilizas IA en tu trabajo de QA?",
+    a: "Sí, la uso para generar ideas de casos de prueba, mejorar scripts y acelerar tareas repetitivas.",
+    topics: ["automation", "functional"]
   },
   {
     id: 28,
-    q: "¿Cómo se integran los tests de performance en CI/CD?",
-    a: "Se integran con umbrales (thresholds) definidos: si el p95 de response time supera X ms o el error rate supera Y%, el pipeline falla. No se corren en cada commit (muy costosos) sino en schedules nocturnos o antes de releases. Herramientas como k6 tienen integración nativa con CI/CD. Se recomienda separar ambientes de performance para no afectar otros pipelines. Dashboards con histórico de métricas permiten detectar degradaciones graduales (performance regression).",
-    topics: ["performance", "cicd"]
+    q: "¿Dónde gestionas las pruebas y defectos?",
+    a: "Normalmente en herramientas como Jira y Xray.",
+    topics: ["functional", "agile"]
   },
   {
     id: 29,
-    q: "¿Qué es el testing de regresión visual?",
-    a: "El testing de regresión visual verifica que los cambios de código no introduzcan diferencias visuales no deseadas en la UI, comparando screenshots pixel a pixel o por componentes. Herramientas: Percy (integra con CI), Applitools (AI-based, más inteligente con cambios dinámicos), BackstopJS, Chromatic (para Storybook). Se captura una línea base (baseline) y se comparan runs posteriores. Útil para detectar regresiones CSS, cambios de layout y problemas cross-browser.",
-    topics: ["functional", "automation"]
+    q: "¿Cómo redactas casos de prueba?",
+    a: "Intento que sean claros y simples, incluyendo precondiciones, pasos y resultados esperados.",
+    topics: ["functional"]
   },
   {
     id: 30,
-    q: "¿Qué es mocking y stubbing en el contexto de testing?",
-    a: "Un stub reemplaza un componente real con una versión simplificada que retorna respuestas predefinidas (simula estado). Un mock además verifica que fue llamado correctamente (verifica comportamiento/interacción). Un fake es una implementación funcional simplificada (ej: base de datos en memoria). En testing de API: mockear servicios externos con WireMock, MSW (Mock Service Worker) o nock. Permiten tests aislados, deterministas y sin dependencias externas.",
+    q: "¿Realizas pruebas de API? ¿Cómo las haces?",
+    a: "Sí, validando códigos de respuesta, estructura del JSON y tiempos de respuesta.",
     topics: ["automation", "functional"]
   },
   {
     id: 31,
-    q: "¿Cómo priorizas qué automatizar en un proyecto?",
-    a: "Se prioriza según: frecuencia de ejecución (tests que se ejecutan muchas veces), riesgo (áreas críticas del negocio), estabilidad de los requerimientos (no automatizar features en cambio constante), esfuerzo vs retorno (casos repetitivos que toman mucho tiempo manual), smoke tests de las funcionalidades core. La pirámide de testing guía: muchos unit tests, menos integration, pocos E2E. No todo debe automatizarse — testing exploratorio sigue siendo valioso.",
-    topics: ["automation", "agile"]
+    q: "¿Qué son las pruebas de regresión y para qué sirven?",
+    a: "Sirven para asegurar que los cambios nuevos no rompan funcionalidades existentes.",
+    topics: ["functional", "automation"]
   },
   {
     id: 32,
-    q: "¿Qué es la pirámide de testing?",
-    a: "La pirámide de testing (Mike Cohn) describe la distribución ideal de tipos de test: Base (más grande): Unit tests — rápidos, aislados, económicos, deben ser la mayoría. Medio: Integration/API tests — verifican interacción entre componentes. Cima (menos): E2E/UI tests — lentos, costosos de mantener, frágiles. El antipatrón es el 'cono de helado': muchos E2E manuales y pocos unit tests. En contexto moderno también se habla del 'trofeo de testing' de Kent C. Dodds.",
-    topics: ["automation", "functional"]
-  },
-  {
-    id: 33,
-    q: "¿Cómo gestiones un bug encontrado en producción?",
-    a: "Proceso: 1) Reportar inmediatamente con toda la información (logs, screenshots, pasos para reproducir, ambiente, severidad). 2) Triaje con el equipo para determinar impacto y prioridad. 3) Hotfix si es crítico (con regression test para ese escenario). 4) Análisis de causa raíz (root cause analysis) para entender por qué pasó y qué falló en el proceso de QA. 5) Agregar caso de prueba a la suite de regresión. 6) Retrospectiva del proceso para prevenir similares.",
-    topics: ["functional", "agile"]
-  },
-  {
-    id: 34,
-    q: "¿Qué es contract testing y por qué es importante en microservicios?",
-    a: "Contract testing verifica que dos servicios (consumer y provider) cumplen un contrato acordado de la API — sin necesidad de un ambiente con todos los servicios corriendo. Herramienta principal: Pact. El consumer define las interacciones esperadas (contract), el provider las verifica contra su implementación. Es fundamental en microservicios para detectar breaking changes antes de deploy. Reemplaza los costosos y frágiles integration tests end-to-end entre servicios.",
+    q: "¿Cuál es un logro destacado en tu carrera QA?",
+    a: "Automatizar una regresión que antes tomaba dos días manualmente y reducirla a menos de una hora dentro del pipeline.",
     topics: ["automation", "cicd"]
   },
   {
+    id: 33,
+    q: "¿Cómo diseñarías un framework de automatización desde cero?",
+    a: "Primero trataría de entender qué tipo de aplicación vamos a probar y qué tecnología usa el equipo. Luego elegiría el lenguaje y la herramienta de automatización. Después definiría una estructura clara del proyecto, por ejemplo separando tests, páginas, utilidades y datos de prueba. Normalmente aplicaría Page Object Model para mantener el código organizado. Finalmente integraría el framework con CI/CD para que las pruebas se ejecuten automáticamente.",
+    topics: ["automation", "cicd"]
+  },
+  {
+    id: 34,
+    q: "¿Cómo haces que tus pruebas sean mantenibles?",
+    a: "Principalmente organizando bien el código. Uso patrones como Page Object Model para separar la lógica de las páginas de los tests. También intento reutilizar funciones comunes como login o navegación, y uso selectores estables.",
+    topics: ["automation"]
+  },
+  {
     id: 35,
-    q: "¿Qué métricas de calidad reportarías en un equipo Agile?",
-    a: "Métricas de proceso: defect escape rate (bugs encontrados en prod vs QA), test coverage (cobertura de código), pass/fail rate de la suite de regresión, tiempo promedio de ejecución del pipeline. Métricas de producto: densidad de defectos (bugs por feature/KLOC), severidad de bugs, tiempo de resolución de bugs. Métricas de flujo: cycle time de las historias. Importante: las métricas deben motivar calidad real, no gaming (evitar 'más tests' solo para subir coverage).",
-    topics: ["agile", "functional", "cicd"]
+    q: "¿Qué harías si una prueba automatizada falla de forma aleatoria (flaky test)?",
+    a: "Primero revisaría los logs para entender qué está pasando. Muchas veces es un problema de sincronización o un selector frágil. También intento reproducir el problema manualmente. Si veo que el test es inestable, reviso las esperas o el selector.",
+    topics: ["automation"]
+  },
+  {
+    id: 36,
+    q: "¿Cómo manejas datos de prueba en automatización?",
+    a: "Depende del caso. A veces uso archivos CSV o JSON para manejar diferentes datos. En otros casos genero datos dinámicamente o utilizo APIs para crear la información necesaria antes de ejecutar la prueba.",
+    topics: ["automation"]
+  },
+  {
+    id: 37,
+    q: "¿Cómo reduces el tiempo de ejecución de pruebas automatizadas?",
+    a: "Una forma es ejecutar pruebas en paralelo. También trato de separar los smoke tests de la regresión completa. Los smoke tests se pueden ejecutar en cada pipeline y la regresión completa puede ejecutarse en horarios programados.",
+    topics: ["automation", "cicd"]
+  },
+  {
+    id: 38,
+    q: "¿Cómo pruebas APIs en automatización?",
+    a: "Primero reviso la documentación o el swagger. Luego valido el status code, la estructura del JSON, los datos que devuelve y también los tiempos de respuesta.",
+    topics: ["automation", "functional"]
+  },
+  {
+    id: 39,
+    q: "¿Cómo integrarías automatización en un pipeline de CI/CD?",
+    a: "La idea es que cada vez que alguien haga un cambio en el repositorio se ejecute un pipeline. Ese pipeline compila el proyecto, ejecuta los tests automáticos y si algo falla se detiene el proceso de despliegue.",
+    topics: ["automation", "cicd"]
+  },
+  {
+    id: 40,
+    q: "¿Cómo manejarías pruebas dependientes entre sí?",
+    a: "Trato de evitar dependencias entre pruebas. Cada test debería poder ejecutarse de forma independiente para evitar que un fallo afecte otros tests.",
+    topics: ["automation"]
+  },
+  {
+    id: 41,
+    q: "¿Cómo manejas cambios frecuentes en la interfaz?",
+    a: "Para eso ayuda mucho usar Page Object Model. Si cambia algo en la interfaz solo modifico el archivo de la página y no todos los tests.",
+    topics: ["automation"]
+  },
+  {
+    id: 42,
+    q: "¿Cómo pruebas microservicios?",
+    a: "Generalmente probando las APIs de cada servicio. También se pueden hacer pruebas de integración entre servicios para validar que la comunicación funcione correctamente.",
+    topics: ["automation", "functional"]
+  },
+  {
+    id: 43,
+    q: "¿Qué es testing shift-left?",
+    a: "Es una práctica donde las pruebas se realizan lo más temprano posible en el ciclo de desarrollo, por ejemplo probando APIs antes de que la interfaz esté lista.",
+    topics: ["functional", "agile", "cicd"]
+  },
+  {
+    id: 44,
+    q: "¿Qué métricas usas en automatización?",
+    a: "Algunas métricas importantes son el tiempo de ejecución de pruebas, el porcentaje de pruebas automatizadas y la cantidad de defectos detectados antes de producción.",
+    topics: ["automation", "agile"]
+  },
+  {
+    id: 45,
+    q: "¿Qué haces si el ambiente de pruebas falla?",
+    a: "Primero reviso si el problema es del ambiente o de la prueba. Verifico logs, servicios y base de datos. Muchas veces el problema no está en el test sino en el ambiente.",
+    topics: ["automation", "functional"]
+  },
+  {
+    id: 46,
+    q: "¿Cómo validarías la performance de una API?",
+    a: "Simulando múltiples usuarios concurrentes para ver cómo responde el sistema. Se revisan tiempos de respuesta, throughput y errores.",
+    topics: ["performance", "automation"]
+  },
+  {
+    id: 47,
+    q: "¿Cómo manejas datos sensibles en pruebas?",
+    a: "Normalmente se usan variables de entorno o herramientas seguras para manejar credenciales. Nunca es buena práctica dejar contraseñas en el código.",
+    topics: ["automation"]
+  },
+  {
+    id: 48,
+    q: "¿Cómo haces debugging de una prueba fallida?",
+    a: "Primero reviso los logs y el reporte del test. Luego intento reproducir el problema manualmente. Si logro reproducirlo, reviso el script para ver dónde está fallando.",
+    topics: ["automation"]
+  },
+  {
+    id: 49,
+    q: "¿Cómo automatizarías pruebas de login?",
+    a: "En algunos casos se puede hacer login directamente usando APIs o tokens para evitar depender de la interfaz gráfica en cada prueba.",
+    topics: ["automation"]
+  },
+  {
+    id: 50,
+    q: "¿Cómo validarías un sistema de alta concurrencia?",
+    a: "Usando herramientas de pruebas de performance para simular muchos usuarios concurrentes y analizar cómo responde el sistema.",
+    topics: ["performance"]
+  },
+  {
+    id: 51,
+    q: "¿Cómo organizarías pruebas dentro de un pipeline?",
+    a: "Normalmente primero se ejecuta el build, luego smoke tests y después pruebas más completas como regresión.",
+    topics: ["cicd", "automation"]
+  },
+  {
+    id: 52,
+    q: "¿Qué harías si un desarrollador dice que un bug no es bug?",
+    a: "Primero revisaría el requerimiento o la historia de usuario. Si el comportamiento no coincide con lo esperado, muestro evidencia como logs o capturas para discutirlo con el equipo.",
+    topics: ["functional", "agile"]
+  },
+  {
+    id: 53,
+    q: "¿Cómo validas que tu automatización aporta valor?",
+    a: "Si reduce el tiempo de regresión, detecta errores antes de producción o ayuda a acelerar el ciclo de desarrollo, entonces claramente está aportando valor.",
+    topics: ["automation", "agile"]
+  },
+  {
+    id: 54,
+    q: "¿Cómo automatizarías pruebas visuales?",
+    a: "Se pueden usar herramientas que comparan capturas de pantalla para detectar cambios visuales en la interfaz.",
+    topics: ["automation", "functional"]
+  },
+  {
+    id: 55,
+    q: "¿Cómo probarías un sistema sin documentación?",
+    a: "Primero exploraría la aplicación para entender su funcionamiento. También revisaría APIs, logs y hablaría con desarrolladores o product owners para entender mejor el sistema.",
+    topics: ["functional", "agile"]
+  },
+  {
+    id: 56,
+    q: "¿Cómo manejas pruebas en sistemas distribuidos?",
+    a: "Normalmente se prueban los servicios de forma individual y luego se hacen pruebas de integración para validar cómo interactúan entre sí.",
+    topics: ["automation", "functional"]
   }
 ];
