@@ -2,7 +2,7 @@
    app.js — Lógica principal de la SPA (QA/Testing Edition)
    ================================================================ */
 
-const LOCAL_SERVER = 'https://9162-181-66-150-8.ngrok-free.app'; // reemplazá con tu dominio de ngrok
+const LOCAL_SERVER = 'https://af3c-181-66-150-205.ngrok-free.app'; // reemplazá con tu dominio de ngrok
 
 const state = {
   currentView: 'home',
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Verificar servidor local ───────────────────────────────────
 async function checkServer() {
   try {
-    const res = await fetch(`${LOCAL_SERVER}/status`, { signal: AbortSignal.timeout(2000) });
+    const res = await fetch(`${LOCAL_SERVER}/status`, { signal: AbortSignal.timeout(4000), headers: { 'ngrok-skip-browser-warning': '1' } });
     const data = await res.json();
     state.serverAvailable = data.ready;
     updateServerBadge();
@@ -155,7 +155,7 @@ async function sendToWhatsApp(index) {
     try {
       const res = await fetch(`${LOCAL_SERVER}/send`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1' },
         body: JSON.stringify({ phone: state.whatsappPhone, message })
       });
       const data = await res.json();
