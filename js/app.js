@@ -2,7 +2,7 @@
    app.js — Lógica principal de la SPA (QA/Testing Edition)
    ================================================================ */
 
-const LOCAL_SERVER = 'https://27e7-2800-4b0-4013-8212-ec88-d121-742b-1246.ngrok-free.app'; // URL ngrok actual — actualizá si cambia
+const LOCAL_SERVER = 'https://d2d8-2800-4b0-4013-8212-ec88-d121-742b-1246.ngrok-free.app'; // URL ngrok actual — actualizá si cambia
 
 const state = {
   currentView: 'home',
