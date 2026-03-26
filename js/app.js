@@ -2,7 +2,7 @@
    app.js — Lógica principal de la SPA (QA/Testing Edition)
    ================================================================ */
 
-const LOCAL_SERVER = 'http://localhost:3010';
+const LOCAL_SERVER = 'ttps://9162-181-66-150-8.ngrok-free.app'; // reemplazá con tu dominio de ngrok
 
 const state = {
   currentView: 'home',
